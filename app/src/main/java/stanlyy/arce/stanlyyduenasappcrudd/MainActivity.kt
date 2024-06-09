@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val ticketsBd = obtenerDatos()
             withContext(Dispatchers.Main) {
-                val miAdapter = Adaptador.Adaptador(ticketsBd)
+                val miAdapter = Adaptador(ticketsBd)
                 rcvProductos.adapter = miAdapter
             }
         }
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this@MainActivity, "Ticket guardado", Toast.LENGTH_SHORT).show()
                         // Actualizar la lista de tickets después de agregar uno nuevo
                         val ticketsActualizados = obtenerDatos()
-                        val miAdapter = Adaptador.Adaptador(ticketsActualizados)
+                        val miAdapter = Adaptador(ticketsActualizados)
                         rcvProductos.adapter = miAdapter
                     }
                 }
