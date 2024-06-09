@@ -1,12 +1,13 @@
 package RecyclerViewHelper
 
 import Modelo.DataClassTicket
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import stanlyy.arce.stanlyyduenasappcrudd.R
 
-class Adaptador {
-
-    class Adaptador(private var Datos: List<DataClassTicket>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    class Adaptador(var Datos: List<DataClassTicket>) : RecyclerView.Adapter<ViewHolder>() {
 
 
 
@@ -15,20 +16,19 @@ class Adaptador {
             notifyDataSetChanged()
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            TODO("Not yet implemented")
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val vista = LayoutInflater.from(parent.context).inflate(R.layout.activity_card_ticket, parent, false)
+            return RecyclerViewHelper.ViewHolder(vista)
         }
 
-        override fun getItemCount(): Int {
-            TODO("Not yet implemented")
-        }
+        override fun getItemCount() = Datos.size
 
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            TODO("Not yet implemented")
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val item  = Datos[position]
+            holder
         }
 
     }
 
 
 
-}
