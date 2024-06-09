@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val txtAutor = findViewById<EditText>(R.id.txtAutor)
         val txtCorreo = findViewById<EditText>(R.id.txtCorreoTick)
         val txtEstado = findViewById<EditText>(R.id.txtEstado)
+         val txtFechaFin = findViewById<EditText>(R.id.txtFechaFin)
         val btnAgregar = findViewById<Button>(R.id.btn_agregarTick)
         val rcvProductos = findViewById<RecyclerView>(R.id.rcvElementos)
 
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                         val correo = rs.getString("CORREO")
                         val fechaCreacion = rs.getDate("FECHA_CREACIÓN")
                         val estado = rs.getString("ESTADO")
-                        val fechaFinalizacion = rs.getDate("FECHA_FINALIZACIÓN")
+                        val fechaFinalizacion = rs.getString("FECHA_FINALIZACIÓN")
 
                         val ticket = DataClassTicket (numTicket, titulo, descripcion, autor, correo, fechaCreacion, estado, fechaFinalizacion)
                         tickets.add(ticket)
@@ -86,13 +87,14 @@ class MainActivity : AppCompatActivity() {
                     val objConexion = Connection().cadenaConexion()
 
                     objConexion?.use { connection ->
-                        val crearTicket = connection.prepareStatement("INSERT INTO TB_TICKET (título, descripción, autor, correo, estado) VALUES (?, ?, ?, ?, ?)")
+                        val crearTicket = connection.prepareStatement("INSERT INTO TB_TICKET (título, descripción, autor, correo, estado, Fecha_Finalización) VALUES (?, ?, ?, ?, ?, ?)")
 
                         crearTicket.setString(1, txtTitulo.text.toString())
                         crearTicket.setString(2, txtDescripcion.text.toString())
                         crearTicket.setString(3, txtAutor.text.toString())
                         crearTicket.setString(4, txtCorreo.text.toString())
                         crearTicket.setString(5, txtEstado.text.toString())
+                        crearTicket.setString(6, txtFechaFin.text.toString())
                         crearTicket.executeUpdate()
                     }
 

@@ -10,7 +10,7 @@ import java.util.Date
         var correo: String,
         var fechaCreacion: Date,
         var estado: String,
-        var fechaFinalizacion: Date?
+        var fechaFinalizacion: String
     )
 
 
