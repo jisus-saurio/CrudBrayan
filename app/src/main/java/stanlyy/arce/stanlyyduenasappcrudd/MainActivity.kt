@@ -98,18 +98,17 @@ class MainActivity : AppCompatActivity() {
                         crearTicket.executeUpdate()
                     }
 
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(this@MainActivity, "Ticket guardado", Toast.LENGTH_SHORT).show()
-                        // Actualizar la lista de tickets después de agregar uno nuevo
-                        val ticketsActualizados = obtenerDatos()
-                        val miAdapter = Adaptador(ticketsActualizados)
-                        rcvProductos.adapter = miAdapter
+                       val nuevoTicket = obtenerDatos()
+                    withContext(Dispatchers.Main){
+                        (rcvProductos.adapter as? Adaptador)?.actualizarLista(nuevoTicket)
                     }
                 }
             } catch (ex: Exception) {
                 println("REGISTER: Loco este es el error: $ex")
             }
         }
+
+
 
     }
 }
